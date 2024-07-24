@@ -11,16 +11,19 @@ public class Main {
 		System.out.println("SERVER");
 		
 		ServerSocket serverSocket = new ServerSocket(4000);
-		Socket socket = serverSocket.accept();
-		System.out.println("cliente conectou");
 		
-		InputStreamReader inputReader = new InputStreamReader(socket.getInputStream());
-		BufferedReader reader = new BufferedReader(inputReader);
-		
-		String x;
-		
-		while ((x = reader.readLine()) != null) {
-			System.out.println("Servidor: " + x);
+		while(true) {
+			Socket socket = serverSocket.accept();
+			System.out.println("cliente conectou");
+			
+			InputStreamReader inputReader = new InputStreamReader(socket.getInputStream());
+			BufferedReader reader = new BufferedReader(inputReader);
+			
+			String x;
+			
+			while ((x = reader.readLine()) != null) {
+				System.out.println("Servidor: " + x);
+			}
 		}
 	}
 }

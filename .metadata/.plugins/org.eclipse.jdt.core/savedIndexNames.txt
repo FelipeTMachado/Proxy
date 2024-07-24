@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+/home/desenv/arquivos/trabalhos/programacao_orientada_objetos_II/proxy/.metadata/.plugins/org.eclipse.jdt.core
-1328996958.index
-1865797976.index
-3525260285.index
