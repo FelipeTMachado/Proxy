@@ -11,7 +11,7 @@ import java.util.Map;
 public class ProxyCacheServidor implements Servidor, Observavel{
     
     private Servidor servidor;
-    private Map<String, String> cache;
+    private Map<String, Pessoa> cache;
     private Boolean estaAtualizado;
     private LocalDateTime ultimaAtualizacao;
 
@@ -20,9 +20,9 @@ public class ProxyCacheServidor implements Servidor, Observavel{
     }
 
     @Override
-    public Map<String, String> requisitar() {
+    public Map<String, Pessoa> requisitar(String id) {
         if (!estaAtualizado) {
-            cache = servidor.requisitar();
+            cache = servidor.requisitar(id);
             ultimaAtualizacao = LocalDateTime.now();
             estaAtualizado = true;
         }

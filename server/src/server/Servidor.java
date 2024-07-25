@@ -9,6 +9,6 @@ import java.util.Map;
  */
 interface Servidor {
 
-    Map<String, String> requisitar();
+    Map<String, Pessoa> requisitar(String id);
     
 }
