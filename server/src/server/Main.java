@@ -12,12 +12,13 @@ public class Main {
 		
 		ServerSocket serverSocket = new ServerSocket(4000);
 		
-		while(true) {
+		while(true) {	
 			Socket socket = serverSocket.accept();
 			System.out.println("cliente conectou");
 			
 			InputStreamReader inputReader = new InputStreamReader(socket.getInputStream());
 			BufferedReader reader = new BufferedReader(inputReader);
+			
 			
 			String x;
 			
