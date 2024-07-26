@@ -5,44 +5,31 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class ConexaoSocket {
-	/*
-	 * ATRIBUTOS
-	 */
-	private static ConexaoSocket instance;
-	private Socket socket;
-	
-	
-	
-	/*
-	 * CONSTRUTOR SINGLETON
-	 */
-	private ConexaoSocket() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public static ConexaoSocket getInstance() {
-		if (instance == null) {
-			instance = new ConexaoSocket();
-		}
-		
-		
-		return instance;
-	}
-	
-	public Socket conectar() throws UnknownHostException, IOException {
-		socket = new Socket("localhost", 4000);
-		
-		return socket;
-	}
-	
-	public Socket conexao() {
-		return socket;
-	}
-	
-	
-	
-	/*
-	 * GETTERS AND SETTERS
-	 */
-	
+
+    private static ConexaoSocket instance;
+    private Socket socket;
+
+    private ConexaoSocket() {
+
+    }
+
+    public static ConexaoSocket getInstance() {
+        if (instance == null) {
+            instance = new ConexaoSocket();
+        }
+
+        return instance;
+    }
+
+    public Socket conectar() throws UnknownHostException, IOException {
+        if (socket != null) {
+            return socket;
+        }
+        return new Socket("localhost", 4000);
+    }
+
+    public Socket conexao() {
+        return socket;
+    }
+
 }
