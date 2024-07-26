@@ -13,20 +13,24 @@ import java.util.Map;
  */
 public class ServidorMysql implements Servidor {
 
-    public Map<String, Pessoa> requisitar(String id) {
+    public HashMap<String, Pessoa> requisitar() {
+        HashMap<String, Pessoa> pessoas = new HashMap<>();
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema", "canpse", "1743");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://172.16.3.7:3308/sistema", "root", "senha");
             Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM trigger_table WHERE processed = 0");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM pessoa");
+            System.out.println("chegou aqui");
             while (resultSet.next()) {
-                System.out.println("Trigger activated: " + resultSet.getInt("id"));
-                statement.executeUpdate("UPDATE trigger_table SET processed = 1 WHERE id = " + resultSet.getInt("id"));
+                String id = resultSet.getString("id");
+                String nome = resultSet.getString("nome");
+                String cpf = resultSet.getString("cpf");
+                Pessoa pessoa = new Pessoa(nome, id, "M", cpf);
+                pessoas.put(id, pessoa);
             }
-            Thread.sleep(1000);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new HashMap<String, Pessoa>();
+        return pessoas;
     }
-    
+
 }
