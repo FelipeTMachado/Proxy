@@ -28,13 +28,21 @@ public class ControllerPessoa {
     }
 
     public Pessoa buscarPessoa(String id) {
-        System.out.println("Buscando Pessoa");
+        System.out.println("| Buscando Pessoa ...");
         Pessoa pessoa = null;
-        try (Socket socket = new Socket("localhost", 4000)) {
+        try (Socket socket = new Socket("172.16.0.249", 4000)) {
             PrintStream saida = new PrintStream(socket.getOutputStream());
             saida.println(id);
             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
             pessoa = (Pessoa) in.readObject();
+            
+            System.out.println("+---------------------------------------------------+");
+            System.out.println("| id:   " + pessoa.getId());
+            System.out.println("| Nome: " + pessoa.getNome());
+            System.out.println("| Cpf:  " + pessoa.getCpf());
+            System.out.println("+---------------------------------------------------+");
+            System.out.println("| DIGITE ENTER PARA CONTINUAR... ");
+            leitura.nextLine();
         } catch (IOException ex) {
             Logger.getLogger(ControllerPessoa.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

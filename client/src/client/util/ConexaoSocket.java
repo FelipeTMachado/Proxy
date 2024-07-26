@@ -25,7 +25,7 @@ public class ConexaoSocket {
         if (socket != null) {
             return socket;
         }
-        return new Socket("localhost", 4000);
+        return new Socket("172.16.0.20", 4000);
     }
 
     public Socket conexao() {
