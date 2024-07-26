@@ -1,1 +1,7 @@
+server/Observador.class
+server/ProxyCacheServidor.class
+server/Pessoa.class
 server/Main.class
+server/ServidorMysql.class
+server/Servidor.class
+server/Observavel.class

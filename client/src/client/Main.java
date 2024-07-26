@@ -10,13 +10,13 @@ import client.view.View;
 public class Main {
 	public static Scanner leitura = new Scanner(System.in);
 	
-	public static void main(String[] args) throws UnknownHostException, IOException {
-		boolean ehSair = false;
+	public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException {	
+//		boolean ehSair = false;
 		
 		ControllerPessoa controllerPessoa = new ControllerPessoa(leitura);
 		
 		controllerPessoa.menuPessoa();
-		
+			
 		View.limparTela();
 		System.out.println("+---------------------------------------------------+");
 		System.out.println("|               SAINDO DO SISTEMA ...               |");
@@ -24,14 +24,4 @@ public class Main {
 		
 		leitura.close();
 	}
-	
-	
-//	Socket socket = new Socket("localhost", 4000);
-//	Scanner leitura = new Scanner(System.in);
-//			
-//	PrintStream saida = new PrintStream(socket.getOutputStream());
-//	String teclado = leitura.nextLine();
-//	
-//	saida.println(teclado);
-//	saida.println("Testando");
 }

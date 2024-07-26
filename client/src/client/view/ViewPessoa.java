@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ViewPessoa extends View {
 	/* 
-	 * ATRIBUTOS
+	 * 
 	 */
 	private Scanner leitura;
 	

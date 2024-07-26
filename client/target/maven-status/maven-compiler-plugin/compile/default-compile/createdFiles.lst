@@ -1,5 +1,7 @@
-client/model/Pessoa.class
 client/view/ViewPessoa.class
+client/util/ConexaoSocket.class
 client/Main.class
+server/Pessoa.class
 client/view/View.class
 client/controller/ControllerPessoa.class
+client/model/Pessoa.class

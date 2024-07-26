@@ -1,9 +1,15 @@
 package client.controller;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.PrintStream;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
-import client.model.Pessoa;
+import server.Pessoa;
+import client.util.ConexaoSocket;
 import client.view.ViewPessoa;
+
 
 public class ControllerPessoa {
 	// ATRIBUTOS
@@ -20,17 +26,34 @@ public class ControllerPessoa {
 	
 	
 	// METODOS FUNCIONAIS
-	public Pessoa menuBuscarPessoa() {
+	public Pessoa menuBuscarPessoa() throws UnknownHostException, IOException, ClassNotFoundException {
+		String idPessoa = viewPessoa.menuBuscarPessoa();
 		
+		return buscarPessoa(idPessoa);
+	}
+	
+	public Pessoa buscarPessoa(String id) throws UnknownHostException, IOException, ClassNotFoundException {
+		PrintStream saida = new PrintStream(ConexaoSocket.getInstance().conectar().getOutputStream());
 		
-		return new Pessoa();
+		saida.println(id);
+		
+		ObjectInputStream inputReader = new ObjectInputStream(ConexaoSocket.getInstance().conexao().getInputStream());
+//		BufferedReader reader = new BufferedReader(inputReader);
+		System.out.println("TESTE");
+		Object x;
+		
+		while ((x = inputReader.readObject()) != null) {
+			System.out.println("Servidor: " + ((Pessoa) x).getCpf());
+		}
+			
+		return new Pessoa("", "", "", "");
 	}
 	
 	public void menuNovaPessoa() {
 		
 	}
 	
-	public void menuPessoa() {
+	public void menuPessoa() throws UnknownHostException, IOException, ClassNotFoundException {
 		boolean ehSair = false;
 		
 		this.viewPessoa = new ViewPessoa(this.leitura);
