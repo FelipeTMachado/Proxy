@@ -6,31 +6,29 @@ import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
-	public static void main(String[] args) throws IOException {
-		System.out.println("SERVER");
-		
-		ServerSocket serverSocket = new ServerSocket(4000);
-		
-		while(true) {	
-			System.out.println("VOLTOU ONDE EU DISSE PANACA");
-			Socket socket = serverSocket.accept();
-			System.out.println("cliente conectou");
-			
-			InputStreamReader inputReader = new InputStreamReader(socket.getInputStream());
-			BufferedReader reader = new BufferedReader(inputReader);
-			
-			
-			String x;
-			
-			while ((x = reader.readLine()) != null) {
-				System.out.println("Servidor: " + x);
-				
-				ObjectOutputStream saida = new ObjectOutputStream(socket.getOutputStream());
-				
-				saida.writeObject(new Pessoa("", "", "", "000000000000"));
-			}
-		}
-	}
+
+    public static void main(String[] args) {
+        System.out.println("SERVER");
+        try (ServerSocket serverSocket = new ServerSocket(4000)) {
+            while (true) {
+                Socket socket = serverSocket.accept();
+                InputStreamReader in = new InputStreamReader(socket.getInputStream());
+                BufferedReader reader = new BufferedReader(in);
+                String x;
+                ObjectOutputStream saida = new ObjectOutputStream(socket.getOutputStream());
+                while ((x = reader.readLine()) != null) {
+                    System.out.println("voltou otario");
+                    System.out.println("Servidor: " + x);
+                    saida.writeObject(new Pessoa("", "", "", "000000000000"));
+                    System.out.println("voltou otario 2");
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
