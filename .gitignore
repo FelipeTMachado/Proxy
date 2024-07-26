@@ -1,2 +1,4 @@
 .metadata/
+client/target/
+server/target/
 
